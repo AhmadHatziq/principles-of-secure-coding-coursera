@@ -31,3 +31,13 @@ Can these problems arise when a program written in some language other than C, l
 # Compilation commands
 `gcc -o normal-implementation normal-implementation.c fqlib.c`
 
+# Summary 
+What Is Going On?
+
+As the module you just did shows, programs that are not well written may not work as expected. This is even more insidious with libraries, where many programs may rely on the library. If the library is fragile, so are the programs they depend on.
+
+The first part, which had you call functions in a way that makes some elements become invisible, works because initially the length of the allocated queue is in the header, in the field “size”. But that field changes, the actual space allocated for the queue does not change. So if, for example, the initial queue length is 100, then size is 100; change it to 50, and only the first 50 are now accessible.
+
+Being able to crash the program by a sequence of calls demonstrates what can happen when fragile code is used. Crashing the program is not the worst thing that could happen, in fact; worse would be a corruption that is not detected until another point in the program. Then tracing it back to the library becomes complicated.
+
+It doesn’t matter what language the program calling the library is written in. What matters is how thelibrary functions are called: in what sequence and with what parameters.

@@ -27,7 +27,7 @@ int main() {
     // Now, manually decrease the size of the queue
     printf("Decreasing the queue size from %d to %d...\n", initial_size, new_size);
     myQueue->size = new_size; // Forcefully decrease the size
-
+    
     // Try removing all elements from the queue
     printf("Attempting to remove all elements from the queue...\n");
     while (myQueue->count > 0) {
